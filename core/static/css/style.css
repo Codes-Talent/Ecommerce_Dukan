@@ -1,0 +1,13 @@
+/* about background image add */
+.bag{
+    background-image: url("../img/wood.jpg");
+}
+
+/* comtact icon color */
+.i-color{
+    color: chartreuse;
+}
+
+#bg1{
+    color: white;
+}

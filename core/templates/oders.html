@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Order{% endblock title %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+    <div class="container text-warning">
+        <div class="border rounded p-4 m-4 bg-dark">
+            <p class="display-4 text-center">Your Orders</p>
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th>Sno.</th>
+                        <th>image</th>
+                        <th>Product</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    {% for oder in oders %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img style="height:50px" class="rounded-circle" src="{{oder.product.image.url}}" alt=""></td>
+                        <td>{{oder.product.name}}</td>
+                        <td>{{oder.date}}</td>
+                        <td>{{oder.product.price|currency}}</td>
+                        <td>{{oder.quantity}}</td>
+                        <td>{{oder.quantity|multiply:oder.product.price|currency}}</td>
+                        {% if oder.status %}
+                        <td><small class="text-white bg-success">Completed</small></td>
+                        {% else %}
+                        <td><small class="text-white bg-danger">Pending</small></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}  
+                </tbody> 
+
+        </div>
+    </div>
+
+
+
+{% endblock content %}
